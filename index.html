@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="C1 德语" />
+  <title>C1 德语</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="home">
+    <h1>C1 德语</h1>
+    <p class="lead">自己用的阅读页。用 Safari 打开后可以「添加到主屏幕」。</p>
+    <div class="cards" id="cards"></div>
+  </main>
+  <script src="js/docs.js"></script>
+  <script>
+    const cards = document.getElementById("cards");
+    Object.keys(window.C1_DOCS).forEach(function (key) {
+      const d = window.C1_DOCS[key];
+      const a = document.createElement("a");
+      a.className = "card";
+      a.href = "doc.html?doc=" + encodeURIComponent(key);
+      a.innerHTML =
+        '<p class="kicker">' + d.kicker + "</p>" +
+        "<h2>" + d.title + "</h2>" +
+        "<p>" + d.blurb + "</p>";
+      cards.appendChild(a);
+    });
+
+    const soon = document.createElement("div");
+    soon.className = "card soon";
+    soon.innerHTML = '<p class="kicker">稍后</p><h2>更多笔记</h2><p>以后从首页再加入口即可。</p>';
+    cards.appendChild(soon);
+  </script>
+</body>
+</html>

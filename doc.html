@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>文档</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="backdrop" id="backdrop"></div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <a href="index.html">← 首页</a>
+        <p class="doc-title" id="doc-title"></p>
+      </div>
+      <nav class="toc-wrap" id="toc" aria-label="目录"></nav>
+    </aside>
+    <div class="main">
+      <div class="topbar">
+        <button class="icon-btn" id="menu-btn" type="button" aria-label="打开目录">☰</button>
+        <a href="index.html">首页</a>
+      </div>
+      <div class="article-wrap">
+        <p class="status" id="status"></p>
+        <article class="markdown" id="article"></article>
+      </div>
+    </div>
+  </div>
+  <script src="js/marked.min.js"></script>
+  <script src="js/docs.js"></script>
+  <script src="js/doc.js"></script>
+</body>
+</html>
