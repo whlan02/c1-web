@@ -15,6 +15,7 @@
     <div class="cards" id="cards"></div>
   </main>
   <script src="js/docs.js"></script>
+  <script src="js/prompts.js"></script>
   <script>
     const cards = document.getElementById("cards");
     Object.keys(window.C1_DOCS).forEach(function (key) {
@@ -28,6 +29,45 @@
         "<p>" + d.blurb + "</p>";
       cards.appendChild(a);
     });
+
+    function addCopyPrompt(id, title, blurb) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "card as-btn";
+      btn.innerHTML =
+        '<p class="kicker">Copy prompt</p>' +
+        "<h2>" + title + "</h2>" +
+        "<p>" + blurb + "</p>";
+      btn.addEventListener("click", async function () {
+        const text = window.C1_PROMPTS[id];
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch (err) {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+        }
+        btn.classList.add("copied");
+        setTimeout(function () {
+          btn.classList.remove("copied");
+        }, 1600);
+      });
+      cards.appendChild(btn);
+    }
+
+    addCopyPrompt(
+      "teil1",
+      "Copy prompt · Schreiben 1",
+      "复制后去手机 AI 里贴；再把题目原文接在最后那句英文后面。"
+    );
+    addCopyPrompt(
+      "teil2",
+      "Copy prompt · Schreiben 2",
+      "复制后去手机 AI 里贴；再把题目原文接在最后那句英文后面。"
+    );
 
     const verbs = document.createElement("a");
     verbs.className = "card";

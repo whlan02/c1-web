@@ -86,9 +86,19 @@ a {
   line-height: 1.45;
 }
 
-.card.soon {
-  opacity: 0.55;
-  pointer-events: none;
+.card.as-btn {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+
+.card.as-btn.copied h2::after {
+  content: " 已复制";
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-family: system-ui, sans-serif;
+  font-weight: 600;
 }
 
 .app-shell {
