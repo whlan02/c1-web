@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>阅读短文</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="verb-page">
+    <header class="verb-bar">
+      <a class="verb-back" id="back-link" href="verbs.html">← 词表</a>
+      <h1 id="page-title">阅读短文</h1>
+      <div class="mask-btns">
+        <button type="button" id="btn-marks" hidden>显示目标词</button>
+      </div>
+    </header>
+    <p class="verb-hint" id="hint">几篇短文，把词表里的前缀用法都写进去了。点进去读；需要时再打开高亮。</p>
+    <div id="list" class="cards"></div>
+    <div id="detail" hidden></div>
+  </main>
+  <script src="js/verbs-data.js"></script>
+  <script src="js/articles-data.js"></script>
+  <script src="js/articles-alias.js"></script>
+  <script src="js/articles.js"></script>
+</body>
+</html>

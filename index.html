@@ -38,10 +38,15 @@
       "<p>点进一个动词，看常用前缀、意思和搭配。可挡住中文或德文自测。</p>";
     cards.appendChild(verbs);
 
-    const soon = document.createElement("div");
-    soon.className = "card soon";
-    soon.innerHTML = '<p class="kicker">稍后</p><h2>更多笔记</h2><p>以后从首页再加入口即可。</p>';
-    cards.appendChild(soon);
+    const settings = document.createElement("a");
+    settings.className = "card";
+    settings.href = "settings.html";
+    settings.innerHTML =
+      '<p class="kicker">设置</p>' +
+      "<h2>OpenRouter API key</h2>" +
+      "<p>只存在你这台设备的浏览器里，用来调用 GPT-5.6 Luna。</p>";
+    cards.appendChild(settings);
+
   </script>
 </body>
 </html>

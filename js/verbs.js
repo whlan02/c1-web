@@ -100,6 +100,103 @@
       .join("");
   }
 
+  function parseMade(text) {
+    var t = String(text || "").trim();
+    var fence = t.match(/```(?:json)?\s*([\s\S]*?)```/);
+    if (fence) t = fence[1].trim();
+    var data = JSON.parse(t);
+    if (data && Array.isArray(data.sentences)) data = data.sentences;
+    if (!Array.isArray(data)) throw new Error("返回格式不对");
+    return data
+      .slice(0, 3)
+      .map(function (item) {
+        if (typeof item === "string") return { de: item, zh: "" };
+        return { de: item.de || item.sentence || "", zh: item.zh || item.zh_cn || "" };
+      })
+      .filter(function (item) {
+        return item.de;
+      });
+  }
+
+  function fillMade(box, items) {
+    box.hidden = false;
+    box.innerHTML = items
+      .map(function (item) {
+        return (
+          '<button type="button" class="made-sent">' +
+          '<span class="made-de">' +
+          escapeHtml(item.de) +
+          "</span>" +
+          (item.zh
+            ? '<span class="made-zh">' + escapeHtml(item.zh) + "</span>"
+            : "") +
+          "</button>"
+        );
+      })
+      .join("");
+  }
+
+  async function makeSentences(btn) {
+    var box = btn.closest(".meaning-item").querySelector(".made-sents");
+    if (!window.C1_OR || !window.C1_OR.hasKey()) {
+      fillMade(box, [
+        {
+          de: "还没有 API key。",
+          zh: "请先到首页「设置」里保存 OpenRouter key。",
+        },
+      ]);
+      return;
+    }
+    btn.disabled = true;
+    var old = btn.textContent;
+    btn.textContent = "生成中…";
+    box.hidden = false;
+    box.innerHTML = "<p class=\"made-status\">正在造 3 句…</p>";
+    try {
+      var result = await window.C1_OR.chat([
+        {
+          role: "system",
+          content:
+            "You write Goethe-Zertifikat C1 German example sentences. Return JSON only: an array of 3 objects {\"de\":\"...\",\"zh\":\"...\"}. No markdown. Each German sentence MUST clearly use the given construction. Chinese is a natural translation.",
+        },
+        {
+          role: "user",
+          content:
+            "Verb: " +
+            btn.getAttribute("data-verb") +
+            "\nForm: " +
+            btn.getAttribute("data-form") +
+            "\nConstruction: " +
+            btn.getAttribute("data-de") +
+            "\nMeaning: " +
+            btn.getAttribute("data-zh"),
+        },
+      ]);
+      fillMade(box, parseMade(result.text));
+    } catch (err) {
+      box.innerHTML =
+        '<p class="made-status">' + escapeHtml(err.message || String(err)) + "</p>";
+    }
+    btn.disabled = false;
+    btn.textContent = old;
+  }
+
+  detailEl.addEventListener("click", function (e) {
+    var btn = e.target.closest(".make-sents");
+    if (btn && detailEl.contains(btn)) {
+      e.preventDefault();
+      e.stopPropagation();
+      makeSentences(btn);
+      return;
+    }
+    var sent = e.target.closest(".made-sent");
+    if (sent && detailEl.contains(sent)) {
+      e.preventDefault();
+      e.stopPropagation();
+      sent.classList.toggle("open");
+    }
+  });
+
   function renderDetail(v) {
     titleEl.textContent = v.verb;
     backLink.href = "verbs.html";
@@ -122,11 +219,26 @@
         const meanings = p.meanings
           .map(function (m) {
             return (
-              '<li><div class="meaning-de">' +
+              '<li class="meaning-item">' +
+              '<div class="meaning-row">' +
+              "<div>" +
+              '<div class="meaning-de">' +
               mask("de", m.de) +
               '</div><div class="meaning-zh">' +
               mask("zh", m.zh) +
-              "</div></li>"
+              "</div></div>" +
+              '<button type="button" class="make-sents" data-verb="' +
+              escapeHtml(v.verb) +
+              '" data-form="' +
+              escapeHtml(p.form) +
+              '" data-de="' +
+              escapeHtml(m.de) +
+              '" data-zh="' +
+              escapeHtml(m.zh) +
+              '">造 3 句</button>' +
+              "</div>" +
+              '<div class="made-sents" hidden></div>' +
+              "</li>"
             );
           })
           .join("");

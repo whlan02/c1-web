@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>设置</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="home settings">
+    <p><a class="verb-back" href="index.html">← 首页</a></p>
+    <h1>设置</h1>
+    <p class="lead">OpenRouter API key 只存在这台设备的浏览器里，不会写进网站代码，也不会上传到 GitHub。</p>
+
+    <section class="settings-card">
+      <h2>OpenRouter</h2>
+      <p class="settings-note">模型：<code>openai/gpt-5.6-luna</code>（GPT-5.6 Luna）</p>
+      <p class="settings-status" id="key-status"></p>
+      <label class="settings-label" for="api-key">API key</label>
+      <input
+        id="api-key"
+        type="password"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder="sk-or-…"
+      />
+      <div class="settings-actions">
+        <button type="button" id="save-key">保存到本机</button>
+        <button type="button" id="clear-key" class="btn-ghost">清除</button>
+      </div>
+    </section>
+
+    <section class="settings-card">
+      <h2>测试调用</h2>
+      <p class="settings-note">发一句很短的话，确认 key 能调通 Luna。</p>
+      <div class="settings-actions">
+        <button type="button" id="test-key">测一下</button>
+      </div>
+      <pre class="settings-out" id="test-out" hidden></pre>
+    </section>
+  </main>
+  <script src="js/openrouter.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>

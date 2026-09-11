@@ -393,9 +393,60 @@ a {
   align-items: center;
 }
 
-.mask-btns {
-  display: flex;
-  gap: 8px;
+.mask-btns[hidden],
+.mask-btns button[hidden] {
+  display: none !important;
+}
+
+.sent {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 1px solid transparent;
+  background: var(--paper);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin: 0 0 8px;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.sent.open {
+  border-color: var(--line);
+  background: #fff;
+}
+
+.sent-de {
+  display: block;
+  line-height: 1.55;
+}
+
+.sent-zh {
+  display: none;
+  margin-top: 8px;
+  padding: 8px 10px;
+  background: var(--accent-soft);
+  border-radius: 10px;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.sent.open .sent-zh {
+  display: block;
+}
+
+mark.hit {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 3px;
+}
+
+body.show-marks mark.hit {
+  background: #f3d7a4;
+  padding: 0 0.12em;
 }
 
 .mask-btns button,
@@ -479,6 +530,75 @@ a {
   border-top: 1px solid var(--line);
 }
 
+.meaning-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.meaning-row > div {
+  min-width: 0;
+  flex: 1;
+}
+
+.make-sents {
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  background: var(--accent-soft);
+  border-radius: 10px;
+  font-family: system-ui, sans-serif;
+  font-size: 0.82rem;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.made-sents {
+  margin-top: 8px;
+  display: grid;
+  gap: 6px;
+}
+
+.made-status {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.made-sent {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: flex-start;
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 10px;
+  padding: 8px 10px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.made-de {
+  flex: 1 1 12rem;
+  font-family: system-ui, sans-serif;
+  line-height: 1.45;
+}
+
+.made-zh {
+  display: none;
+  flex: 1 1 10rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.made-sent.open .made-zh {
+  display: block;
+}
+
 .meaning-de {
   font-family: system-ui, sans-serif;
   margin-bottom: 4px;
@@ -507,4 +627,73 @@ body:not(.hide-de) .lang-de.solo-hide {
   color: transparent;
   background: #ddd4c6;
   user-select: none;
+}
+
+.settings-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+  margin-bottom: 14px;
+}
+
+.settings-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+}
+
+.settings-note,
+.settings-status {
+  color: var(--muted);
+  margin: 0 0 12px;
+  line-height: 1.45;
+}
+
+.settings-label {
+  display: block;
+  font-family: system-ui, sans-serif;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+}
+
+.settings input[type="password"] {
+  width: 100%;
+  min-height: var(--tap);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  background: #fff;
+}
+
+.settings-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.settings-actions button {
+  min-height: var(--tap);
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  background: var(--accent-soft);
+  border-radius: 12px;
+  color: var(--ink);
+  font-family: system-ui, sans-serif;
+}
+
+.settings-actions .btn-ghost {
+  background: var(--paper);
+}
+
+.settings-out {
+  margin: 12px 0 0;
+  padding: 12px;
+  background: #efe8dc;
+  border-radius: 10px;
+  white-space: pre-wrap;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88rem;
 }
