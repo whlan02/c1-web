@@ -362,3 +362,149 @@ a {
     padding: 16px 12px 48px;
   }
 }
+
+.verb-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 18px 16px 72px;
+}
+
+.verb-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.verb-bar h1 {
+  font-size: 1.35rem;
+  margin: 0;
+  flex: 1;
+  min-width: 8rem;
+}
+
+.verb-back {
+  text-decoration: none;
+  color: var(--muted);
+  font-family: system-ui, sans-serif;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.mask-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.mask-btns button,
+.sep-label {
+  font-family: system-ui, sans-serif;
+}
+
+.mask-btns button {
+  min-height: var(--tap);
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 12px;
+  color: var(--ink);
+}
+
+.verb-hint {
+  color: var(--muted);
+  margin: 0 0 18px;
+  line-height: 1.45;
+}
+
+.verb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.verb-card h2 {
+  font-family: system-ui, sans-serif;
+}
+
+.verb-base {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+.prefix-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px 16px 8px;
+  box-shadow: var(--shadow);
+  margin-bottom: 12px;
+}
+
+.prefix-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.prefix-kicker {
+  margin: 0 0 4px;
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-family: system-ui, sans-serif;
+}
+
+.prefix-head h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-family: system-ui, sans-serif;
+}
+
+.sep-label {
+  margin-left: 8px;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.meaning-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+}
+
+.meaning-list li {
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+
+.meaning-de {
+  font-family: system-ui, sans-serif;
+  margin-bottom: 4px;
+}
+
+.meaning-zh {
+  color: var(--muted);
+}
+
+.maskable {
+  border-radius: 4px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.meaning-de .maskable,
+.meaning-zh .maskable {
+  display: block;
+  padding: 4px 6px;
+}
+
+body.hide-zh .lang-zh:not(.revealed),
+body.hide-de .lang-de:not(.revealed),
+body:not(.hide-zh) .lang-zh.solo-hide,
+body:not(.hide-de) .lang-de.solo-hide {
+  color: transparent;
+  background: #ddd4c6;
+  user-select: none;
+}
